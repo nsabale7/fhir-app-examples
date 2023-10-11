@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
     }
     setHasOptionsMenu(true)
     (activity as MainActivity).setDrawerEnabled(true)
-    setIGSpinner()
+//    setIGSpinner()
     setOnClicks()
   }
 
@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
       findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddPatientFragment())
     }
     binding.itemPatientList.setOnClickListener {
-      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPatientList())
+      findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCaseReportListFragment())
     }
     binding.itemSearch.setOnClickListener {
       findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPatientList())

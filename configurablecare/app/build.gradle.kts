@@ -41,6 +41,13 @@ android {
       )
     )
   }
+  sourceSets {
+    getByName("main") {
+      resources {
+        srcDirs("src\\main\\resources", "src\\test")
+      }
+    }
+  }
 }
 
 configurations.all {
@@ -115,6 +122,8 @@ object HapiFhir {
 }
 
 dependencies {
+  testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+  testImplementation("junit:junit:4.13.2")
   coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
   implementation("androidx.activity:activity-ktx:1.7.2")
   implementation("androidx.appcompat:appcompat:1.6.1")

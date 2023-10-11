@@ -18,6 +18,7 @@
             android:id="@+id/workflow_execution_status_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             layout="@layout/status_layout"
         />
 
@@ -48,6 +49,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
+        android:visibility="gone"
         android:clickable="true"
         android:foregroundTint="#ffffff"
         app:backgroundTint="@color/colorAccent"

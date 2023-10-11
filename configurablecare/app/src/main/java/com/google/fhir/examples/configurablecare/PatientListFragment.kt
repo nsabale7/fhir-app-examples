@@ -270,6 +270,7 @@ class PatientListFragment : Fragment() {
         }
       }
       is CareWorkflowExecutionStatus.Failed -> {}
+      else -> {}
     }
   }
 

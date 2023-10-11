@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.google.android.fhir.FhirEngine
+import com.google.android.fhir.datacapture.common.datatype.asStringValue
 import com.google.android.fhir.search.Order
 import com.google.android.fhir.search.StringFilterModifier
 import com.google.android.fhir.search.count
@@ -29,6 +30,7 @@ import com.google.android.fhir.search.search
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.launch
+import org.hl7.fhir.r4.model.Extension
 import org.hl7.fhir.r4.model.Patient
 import org.hl7.fhir.r4.model.RiskAssessment
 import org.hl7.fhir.r4.model.Task
@@ -150,7 +152,12 @@ class PatientListViewModel(application: Application, private val fhirEngine: Fhi
     val html: String,
     var risk: String? = "",
     var riskItem: RiskAssessmentItem? = null,
-    var pendingTasksCount: Int = 0
+    var pendingTasksCount: Int = 0,
+    val address : String,
+    val landmark : String,
+    val occupation : String,
+    val guardian : String,
+    val workAddress: String,
   ) {
     override fun toString(): String = name
   }
@@ -200,6 +207,12 @@ internal fun Patient.toPatientItem(position: Int): PatientListViewModel.PatientI
   val phone = if (hasTelecom()) telecom[0].value else ""
   val city = if (hasAddress()) address[0].city else ""
   val country = if (hasAddress()) address[0].country else ""
+  val address = if(hasAddress()) address[0].text else ""
+  val landmark = extension.getValueByUrl("http://worldhealthorganization.github.io/smart-ot/StructureDefinition/Landmark")
+  val occupation = extension.getValueByUrl("http://worldhealthorganization.github.io/smart-ot/StructureDefinition/Occupation")
+  val guardian = extension.getValueByUrl("http://worldhealthorganization.github.io/smart-ot/StructureDefinition/Guardian")
+  val workAddress = extension.getValueByUrl("http://worldhealthorganization.github.io/smart-ot/StructureDefinition/WorkAddress")
+
   val isActive = active
   val html: String = if (hasText()) text.div.valueAsString else ""
 
@@ -213,8 +226,19 @@ internal fun Patient.toPatientItem(position: Int): PatientListViewModel.PatientI
     city = city ?: "",
     country = country ?: "",
     isActive = isActive,
-    html = html
+    html = html,
+    guardian= guardian,
+    address = address,
+    landmark = landmark,
+    occupation = occupation,
+    workAddress = workAddress
   )
+}
+
+fun List<Extension>.getValueByUrl(url : String) : String {
+  return firstOrNull{
+    it.url == url
+  }?.value?.asStringValue() ?: ""
 }
 
 /**

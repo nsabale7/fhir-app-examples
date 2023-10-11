@@ -23,4 +23,14 @@
     <dimen name="small_text_margin">2dp</dimen>
     <dimen name="status_margin">5dp</dimen>
   <dimen name="header_height">170dp</dimen>
+
+    <dimen name="card_elevation">10dp</dimen>
+    <dimen name="card_corner_radius">10dp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_extra_small">4dp</dimen>
 </resources>

@@ -20,6 +20,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -36,6 +37,7 @@ class AddPatientFragment : Fragment(R.layout.add_patient_fragment) {
 
   private val viewModel: AddPatientViewModel by viewModels()
   private val careWorkflowExecutionViewModel: CareWorkflowExecutionViewModel by activityViewModels()
+  private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -77,14 +79,16 @@ class AddPatientFragment : Fragment(R.layout.add_patient_fragment) {
 
   private fun updateArguments() {
     requireArguments()
-      .putString(QUESTIONNAIRE_FILE_PATH_KEY, "new-patient-registration-paginated.json")
+      .putString(QUESTIONNAIRE_FILE_PATH_KEY, "Questionnaire-Questionnaire-SOTMeasles.json")
   }
 
   private fun addQuestionnaireFragment() {
     childFragmentManager.commit {
       add(
         R.id.add_patient_container,
-        QuestionnaireFragment.builder().setQuestionnaire(viewModel.questionnaire).build(),
+        QuestionnaireFragment.builder().setQuestionnaire(viewModel.questionnaireUri!!)
+//          .setQuestionnaireResponse(viewModel.questionnaireResponse)
+          .showReviewPageBeforeSubmit(true).setShowSubmitButton(false).build(),
         QUESTIONNAIRE_FRAGMENT_TAG
       )
     }
@@ -101,7 +105,7 @@ class AddPatientFragment : Fragment(R.layout.add_patient_fragment) {
   }
 
   private fun observeSavedPatient() {
-    viewModel.savedPatient.observe(viewLifecycleOwner) {
+    viewModel.savedMeasles.observe(viewLifecycleOwner) {
       if (it == null) {
         Snackbar.make(
             requireActivity().findViewById(android.R.id.content),
@@ -113,15 +117,16 @@ class AddPatientFragment : Fragment(R.layout.add_patient_fragment) {
       }
       Snackbar.make(
           requireActivity().findViewById(android.R.id.content),
-          "Patient is saved. Updating tasks.",
+          "Saved",
           Snackbar.LENGTH_SHORT
         )
         .show()
       // workflow execution in mainActivityViewModel is necessary
-      careWorkflowExecutionViewModel.executeCareWorkflowForPatient(it)
-      NavHostFragment.findNavController(this)
-        .previousBackStackEntry
-        ?.savedStateHandle?.set(NEW_PATIENT_RESULT_KEY, it.name[0].nameAsSingleString)
+//      careWorkflowExecutionViewModel.executeCareWorkflowForPatient(it)
+//      NavHostFragment.findNavController(this)
+//        .previousBackStackEntry
+//        ?.savedStateHandle?.set(NEW_PATIENT_RESULT_KEY, it.name[0].nameAsSingleString)
+      mainActivityViewModel.triggerOneTimeSync()
       NavHostFragment.findNavController(this).navigateUp()
     }
   }

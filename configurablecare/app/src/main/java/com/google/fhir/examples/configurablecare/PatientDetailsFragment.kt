@@ -100,7 +100,7 @@ class PatientDetailsFragment : Fragment() {
     }
     patientDetailsViewModel.getPatientDetailData()
     (activity as MainActivity).setDrawerEnabled(false)
-    collectWorkflowExecution()
+//    collectWorkflowExecution()
   }
 
   private fun collectWorkflowExecution() {

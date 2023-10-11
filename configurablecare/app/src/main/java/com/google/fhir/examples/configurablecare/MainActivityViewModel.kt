@@ -62,10 +62,14 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
   }
 
   fun triggerOneTimeSync() {
+    println("*** triggerOneTimeSync")
+
     viewModelScope.launch {
+
       Sync.oneTimeSync<FhirSyncWorker>(getApplication())
-        .shareIn(this, SharingStarted.Eagerly, 10)
-        .collect { _pollState.emit(it) }
+        .collect {
+          println("*** ${it}")
+          _pollState.emit(it) }
     }
   }
 

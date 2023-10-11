@@ -33,10 +33,17 @@ import com.google.fhir.examples.configurablecare.care.CarePlanManager
 import com.google.fhir.examples.configurablecare.care.TaskManager
 import com.google.fhir.examples.configurablecare.data.FhirSyncWorker
 import com.google.fhir.examples.configurablecare.external.ValueSetResolver
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.hl7.fhir.r4.context.SimpleWorkerContext
+import org.hl7.fhir.r4.model.Parameters
+import org.hl7.fhir.utilities.npm.NpmPackage
 import timber.log.Timber
 
 class FhirApplication : Application(), DataCaptureConfig.Provider {
-  private val BASE_URL = "http://10.0.2.2:8080/fhir/"
+  private val BASE_URL = "http://10.102.10.91:8080/fhir/"
   // Only initiate the FhirEngine when used for the first time, not when the app is created.
   private val fhirEngine: FhirEngine by lazy { constructFhirEngine() }
   private val taskManager: TaskManager by lazy { constructTaskManager() }
@@ -44,6 +51,8 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
   private var dataCaptureConfig: DataCaptureConfig? = null
 
   private val dataStore by lazy { DemoDataStore(this) }
+
+  private var contextR4 : ComplexWorkerContext? = null
 
   override fun onCreate() {
     super.onCreate()
@@ -66,6 +75,7 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
       )
     )
     Sync.oneTimeSync<FhirSyncWorker>(this)
+    constructR4Context()
 
     dataCaptureConfig =
       DataCaptureConfig().apply {
@@ -73,7 +83,7 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
         valueSetResolverExternal = object : ValueSetResolver() {}
         xFhirQueryResolver = XFhirQueryResolver { fhirEngine.search(it) }
       }
-    ValueSetResolver.init(this@FhirApplication)
+
   }
 
   private fun constructFhirEngine(): FhirEngine {
@@ -88,6 +98,26 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
     return TaskManager(fhirEngine)
   }
 
+  private fun constructR4Context() = CoroutineScope(Dispatchers.IO).launch {
+    println("**** creating contextR4")
+
+    val packages = arrayListOf<NpmPackage>(
+      NpmPackage.fromPackage(
+        assets.open("package.r4.tgz")
+      ),
+      NpmPackage.fromPackage(
+        assets.open("package.tgz")
+      )
+    )
+
+     contextR4 = ComplexWorkerContext()
+    contextR4?.apply {
+      loadFromMultiplePackages(packages, true)
+      println("**** created contextR4")
+      ValueSetResolver.init(this@FhirApplication, this)
+    }
+  }
+
   companion object {
     fun fhirEngine(context: Context) = (context.applicationContext as FhirApplication).fhirEngine
 
@@ -97,6 +127,8 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
       (context.applicationContext as FhirApplication).carePlanManager
 
     fun taskManager(context: Context) = (context.applicationContext as FhirApplication).taskManager
+
+    fun contextR4(context: Context) = (context.applicationContext as FhirApplication).contextR4
   }
 
   override fun getDataCaptureConfig(): DataCaptureConfig = dataCaptureConfig ?: DataCaptureConfig()

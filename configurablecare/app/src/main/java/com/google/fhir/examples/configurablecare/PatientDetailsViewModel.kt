@@ -34,6 +34,7 @@ import java.time.ZoneId
 import java.util.Date
 import java.util.Locale
 import kotlinx.coroutines.launch
+import org.hl7.fhir.r4.model.Composition
 import org.hl7.fhir.r4.model.Condition
 import org.hl7.fhir.r4.model.Observation
 import org.hl7.fhir.r4.model.Patient
@@ -67,6 +68,12 @@ class PatientDetailsViewModel(
       .map { createObservationItem(it, getApplication<Application>().resources) }
       .let { observations.addAll(it) }
     return observations
+  }
+
+  private suspend fun getPatientComposition() : List<Composition> {
+    return fhirEngine.search<Composition> {
+      filter(Composition.PATIENT, { value = "Patient/$patientId"})
+    }.take(MAX_RESOURCE_COUNT)
   }
 
   private suspend fun getPatientConditions(): List<PatientListViewModel.ConditionItem> {
@@ -109,6 +116,46 @@ class PatientDetailsViewModel(
             }
           ),
           lastInGroup = true
+        )
+      )
+      data.add(
+        PatientDetailProperty(
+          PatientProperty(
+            getString(R.string.patient_property_dob),
+            patientItem.dob?.localizedString ?: ""
+          )
+        )
+      )
+      data.add(
+        PatientDetailProperty(
+          PatientProperty(
+            "Guardian",
+            patientItem.guardian
+          )
+        )
+      )
+      data.add(
+        PatientDetailProperty(
+          PatientProperty(
+            "Address",
+            patientItem.address
+          )
+        )
+      )
+      data.add(
+        PatientDetailProperty(
+          PatientProperty(
+            "Landmark",
+            patientItem.landmark
+          )
+        )
+      )
+      data.add(
+        PatientDetailProperty(
+          PatientProperty(
+            "Occupation",
+            patientItem.occupation
+          )
         )
       )
     }
