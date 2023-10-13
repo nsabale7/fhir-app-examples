@@ -30,13 +30,15 @@ import com.google.android.fhir.datacapture.validation.QuestionnaireResponseValid
 import com.google.fhir.examples.configurablecare.util.TransformSupportServicesMatchBox
 import java.io.File
 import java.util.UUID
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.hl7.fhir.r4.model.Base
 import org.hl7.fhir.r4.model.Bundle
+import org.hl7.fhir.r4.model.DateType
+import org.hl7.fhir.r4.model.Observation
 import org.hl7.fhir.r4.model.Patient
 import org.hl7.fhir.r4.model.Questionnaire
 import org.hl7.fhir.r4.model.QuestionnaireResponse
+import org.hl7.fhir.r4.model.Reference
 
 /** ViewModel for patient registration screen {@link AddPatientFragment}. */
 class AddPatientViewModel(application: Application, private val state: SavedStateHandle) :
@@ -67,23 +69,22 @@ class AddPatientViewModel(application: Application, private val state: SavedStat
    */
   fun savePatient(questionnaireResponse: QuestionnaireResponse) {
     viewModelScope.launch {
-//      if (QuestionnaireResponseValidator.validateQuestionnaireResponse(
-//            questionnaireResource,
-//            questionnaireResponse,
-//            getApplication()
-//          )
-//          .values
-//          .flatten()
-//          .any { it is Invalid }
-//      ) {
-//        savedMeasles.value = null
-//        return@launch
-//      }
+      if (QuestionnaireResponseValidator.validateQuestionnaireResponse(
+            questionnaireResource,
+            questionnaireResponse,
+            getApplication()
+          )
+          .values
+          .flatten()
+          .any { it is Invalid }
+      ) {
+        savedMeasles.value = null
+        return@launch
+      }
 
       val outputFile = File(getApplication<Application>().externalCacheDir, "questionnaireResponse.json")
       outputFile.writeText(FhirContext.forCached(FhirVersionEnum.R4).newJsonParser().encodeResourceToString(questionnaireResponse))
-      questionnaireResponse.id = UUID.randomUUID().toString()
-      fhirEngine.create(questionnaireResponse)
+
       val contextR4 = FhirApplication.contextR4(getApplication<FhirApplication>().applicationContext)
       if(contextR4 == null) {
         savedMeasles.value = null
@@ -116,12 +117,25 @@ class AddPatientViewModel(application: Application, private val state: SavedStat
         return@launch
       }
 
-      val outputFil1e = File(getApplication<Application>().externalCacheDir, "bundle.json")
-      outputFil1e.writeText(FhirContext.forCached(FhirVersionEnum.R4).newJsonParser().encodeResourceToString(targetResource))
+//      val outputFil1e = File(getApplication<Application>().externalCacheDir, "bundle.json")
+//      outputFil1e.writeText(FhirContext.forCached(FhirVersionEnum.R4).newJsonParser().encodeResourceToString(targetResource))
+      var patientID :String? = null
      targetResource.entry.forEach { bundleEntryComponent ->
-       fhirEngine.create(bundleEntryComponent.resource)
+       val resource = bundleEntryComponent.resource
+       if(resource is Patient) {
+         patientID = resource.idElement.idPart
+       }
+       if(resource is Observation && resource.effective is DateType) {
+         resource.effective = null
+       }
+       fhirEngine.create(resource)
      }
 
+      questionnaireResponse.id = UUID.randomUUID().toString()
+      if(patientID != null) {
+        questionnaireResponse.subject = Reference("Patient/$patientID")
+      }
+      fhirEngine.create(questionnaireResponse)
       savedMeasles.value = true
     }
   }

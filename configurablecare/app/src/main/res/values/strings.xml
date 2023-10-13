@@ -77,4 +77,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="d_case_reports">%d Case Reports</string>
     <string name="expandle">expandle</string>
+    <string name="case_report_list">Case Report List</string>
+    <string name="case_report_details">Case Report Details</string>
 </resources>

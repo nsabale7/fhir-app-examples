@@ -36,6 +36,7 @@ import com.google.fhir.examples.configurablecare.external.ValueSetResolver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.hl7.fhir.r4.context.SimpleWorkerContext
 import org.hl7.fhir.r4.model.Parameters
@@ -101,14 +102,23 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
   private fun constructR4Context() = CoroutineScope(Dispatchers.IO).launch {
     println("**** creating contextR4")
 
-    val packages = arrayListOf<NpmPackage>(
+    val measlesIg = async {
       NpmPackage.fromPackage(
         assets.open("package.r4.tgz")
-      ),
+      )
+    }
+
+    val baseIg = async {
       NpmPackage.fromPackage(
         assets.open("package.tgz")
       )
+    }
+
+    val packages = arrayListOf<NpmPackage>(
+     measlesIg.await(),
+      baseIg.await()
     )
+    println("**** read assets contextR4")
 
      contextR4 = ComplexWorkerContext()
     contextR4?.apply {
