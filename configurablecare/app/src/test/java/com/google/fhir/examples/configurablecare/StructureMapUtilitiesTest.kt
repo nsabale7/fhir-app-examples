@@ -32,16 +32,12 @@ import org.junit.Assert
 import org.junit.Test
 class StructureMapUtilitiesTest {
 
-  @Test
-  fun sum() {
-    Assert.assertEquals(2+2,4)
-  }
   @Test()
   fun `perform extraction for ot`() {
     val locationQuestionnaireResponseString: String =
       "QuestionnaireResponse_ot_all_answers.json".readFile()
     val locationStructureMap =
-      "MeaslesQuestionnaireToResources1.fml".readFile()
+      "MeaslesQuestionnaireToResources.fml".readFile()
     val immunizationIg =
       "package.r4.tgz"
     val baseIg =

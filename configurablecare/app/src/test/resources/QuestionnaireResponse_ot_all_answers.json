@@ -21,8 +21,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/InitDiag",
-                    "code": "2",
-                    "display": "Rubella"
+                    "code": "1",
+                    "display": "Measles"
                   }
                 }
               ]
@@ -32,7 +32,7 @@
               "text": "Case Number",
               "answer": [
                 {
-                  "valueString": "F"
+                  "valueString": "112"
                 }
               ]
             },
@@ -45,7 +45,7 @@
                   "text": "Health Service Name",
                   "answer": [
                     {
-                      "valueString": "F"
+                      "valueString": "Appollo "
                     }
                   ]
                 },
@@ -54,7 +54,7 @@
                   "text": "Health Service Telephone",
                   "answer": [
                     {
-                      "valueString": "C"
+                      "valueString": "+9181937738398"
                     }
                   ]
                 },
@@ -63,7 +63,7 @@
                   "text": "Country",
                   "answer": [
                     {
-                      "valueString": "T"
+                      "valueString": "India"
                     }
                   ]
                 },
@@ -72,7 +72,7 @@
                   "text": "Municipality",
                   "answer": [
                     {
-                      "valueString": "G"
+                      "valueString": "Hsr"
                     }
                   ]
                 },
@@ -81,7 +81,7 @@
                   "text": "Province/State",
                   "answer": [
                     {
-                      "valueString": "K"
+                      "valueString": "Karnataka "
                     }
                   ]
                 },
@@ -90,7 +90,7 @@
                   "text": "Locality/Neighborhood",
                   "answer": [
                     {
-                      "valueString": "M"
+                      "valueString": "Btm"
                     }
                   ]
                 }
@@ -101,7 +101,7 @@
               "text": "Reported By",
               "answer": [
                 {
-                  "valueString": "N"
+                  "valueString": "Satwik "
                 }
               ]
             },
@@ -110,7 +110,7 @@
               "text": "Date Of Consultation",
               "answer": [
                 {
-                  "valueDate": "2023-10-09"
+                  "valueDate": "2023-10-11"
                 }
               ]
             },
@@ -119,7 +119,7 @@
               "text": "Date Of Home Visit",
               "answer": [
                 {
-                  "valueDate": "2023-10-09"
+                  "valueDate": "2023-10-11"
                 }
               ]
             },
@@ -128,7 +128,7 @@
               "text": "Date Reported - Local",
               "answer": [
                 {
-                  "valueDate": "2023-10-09"
+                  "valueDate": "2023-10-11"
                 }
               ]
             },
@@ -137,7 +137,7 @@
               "text": "Date Reported - National",
               "answer": [
                 {
-                  "valueDate": "2023-10-09"
+                  "valueDate": "2023-10-11"
                 }
               ]
             },
@@ -178,7 +178,7 @@
               "text": "Patient’s first and last names",
               "answer": [
                 {
-                  "valueString": "Nitin"
+                  "valueString": "Nitin Sabale "
                 }
               ]
             },
@@ -187,7 +187,7 @@
               "text": "Name of the mother or guardian",
               "answer": [
                 {
-                  "valueString": "Ohh "
+                  "valueString": "Niyu"
                 }
               ]
             },
@@ -196,7 +196,7 @@
               "text": "Address",
               "answer": [
                 {
-                  "valueString": "Gio"
+                  "valueString": "1627/8"
                 }
               ]
             },
@@ -205,7 +205,7 @@
               "text": "Telephone",
               "answer": [
                 {
-                  "valueString": "V"
+                  "valueString": "+86038738999"
                 }
               ]
             },
@@ -214,7 +214,7 @@
               "text": "Landmarks to locate the house",
               "answer": [
                 {
-                  "valueString": "F"
+                  "valueString": "Temple"
                 }
               ]
             },
@@ -223,7 +223,7 @@
               "text": "Patient’s Occupation",
               "answer": [
                 {
-                  "valueString": "D"
+                  "valueString": "It"
                 }
               ]
             },
@@ -267,7 +267,7 @@
               "text": "Patient’s Date of Birth",
               "answer": [
                 {
-                  "valueDate": "2023-10-08"
+                  "valueDate": "1997-11-14"
                 }
               ]
             },
@@ -276,7 +276,61 @@
               "text": "If date of birth is unknown, age",
               "answer": [
                 {
-                  "valueInteger": 5
+                  "valueInteger": 26
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "vaccinationStatus",
+          "text": "Section III: Vaccination History",
+          "item": [
+            {
+              "linkId": "lastDoseDate",
+              "text": "Date of last dose",
+              "answer": [
+                {
+                  "valueDate": "2023-09-25"
+                }
+              ]
+            },
+            {
+              "linkId": "sourceOfInformation",
+              "text": "Source of vaccination Information †",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://ritikarawlani.github.io/smart-outbreak-measles/SourceOfInformation",
+                    "code": "Vaccinationcard",
+                    "display": "Vaccination card"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "noOfDoses",
+              "text": "Number of doses**",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://ritikarawlani.github.io/smart-outbreak-measles/NoOfDoses",
+                    "code": "2",
+                    "display": "Two dose"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "vaccineType",
+              "text": "Type of Vaccine",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://ritikarawlani.github.io/smart-outbreak-measles/VaccineType",
+                    "code": "1",
+                    "display": "Measles"
+                  }
                 }
               ]
             }
@@ -423,9 +477,27 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/PatientOutcome",
-                    "code": "Sequelae",
-                    "display": "Sequelae"
+                    "code": "Death",
+                    "display": "Death"
                   }
+                }
+              ]
+            },
+            {
+              "linkId": "outcomeDate",
+              "text": "If Yes, Date of death",
+              "answer": [
+                {
+                  "valueDate": "2023-10-11"
+                }
+              ]
+            },
+            {
+              "linkId": "primaryCauseOfDeath",
+              "text": "Primary cause of death",
+              "answer": [
+                {
+                  "valueString": "High neck "
                 }
               ]
             },
@@ -434,7 +506,7 @@
               "text": "Comments",
               "answer": [
                 {
-                  "valueString": "Ft"
+                  "valueString": "Need sleep "
                 }
               ]
             }
@@ -464,8 +536,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/SampleType",
-                    "code": "2",
-                    "display": "Nasopharyngeal aspirate/swab"
+                    "code": "3",
+                    "display": "Throat swab"
                   }
                 }
               ]
@@ -475,7 +547,7 @@
               "text": "Date specimen obtained",
               "answer": [
                 {
-                  "valueDate": "2023-10-08"
+                  "valueDate": "2023-10-09"
                 }
               ]
             },
@@ -484,7 +556,7 @@
               "text": "Laboratory Name",
               "answer": [
                 {
-                  "valueString": "G"
+                  "valueString": "Lab 1"
                 }
               ]
             },
@@ -493,7 +565,7 @@
               "text": "Date specimen was sent to lab",
               "answer": [
                 {
-                  "valueDate": "2023-10-08"
+                  "valueDate": "2023-10-06"
                 }
               ]
             },
@@ -511,7 +583,7 @@
               "text": "# specimen ID in lab.",
               "answer": [
                 {
-                  "valueString": "F"
+                  "valueString": "167"
                 }
               ]
             },
@@ -535,8 +607,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/Antigen",
-                    "code": "2",
-                    "display": "Rubella"
+                    "code": "3",
+                    "display": "Dengue"
                   }
                 }
               ]
@@ -548,8 +620,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/Result",
-                    "code": "1",
-                    "display": "Positive"
+                    "code": "3",
+                    "display": "Equivocal (indeterminate)"
                   }
                 }
               ]
@@ -559,7 +631,7 @@
               "text": "Date of Results",
               "answer": [
                 {
-                  "valueDate": "2023-10-08"
+                  "valueDate": "2023-10-10"
                 }
               ]
             },
@@ -568,7 +640,7 @@
               "text": "If virus was detected, specify viral genotype: (Measles: A, B1, B2, B3, C1, C2, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, E, F, G1, G2, G3, H1, H2. Rubella: 1a, 1B, 1C, 1D, 1E, 1F, 1g, 2A, 2B, 2c)",
               "answer": [
                 {
-                  "valueString": "A"
+                  "valueString": "B1"
                 }
               ]
             }
@@ -637,8 +709,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/InfectionSetting",
-                    "code": "2",
-                    "display": "Community"
+                    "code": "1",
+                    "display": "Household contact"
                   }
                 }
               ]
@@ -727,8 +799,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/DiscardingBasis",
-                    "code": "2",
-                    "display": "Vaccine Reaction"
+                    "code": "4",
+                    "display": "Parvovirus B19"
                   }
                 }
               ]
@@ -740,8 +812,8 @@
                 {
                   "valueCoding": {
                     "system": "http://worldhealthorganization.github.io/smart-ot/ValueSet/SourceOfInfection",
-                    "code": "1",
-                    "display": "Imported"
+                    "code": "2",
+                    "display": "Import-Related"
                   }
                 }
               ]
@@ -764,7 +836,7 @@
               "text": "Classified by",
               "answer": [
                 {
-                  "valueString": "Gt"
+                  "valueString": "Noisy"
                 }
               ]
             },
@@ -773,7 +845,7 @@
               "text": "Date of final classification",
               "answer": [
                 {
-                  "valueDate": "2023-10-08"
+                  "valueDate": "2023-10-11"
                 }
               ]
             }
