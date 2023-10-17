@@ -4,12 +4,11 @@ import org.hl7.fhir.exceptions.FHIRException;
 import org.hl7.fhir.r4.context.SimpleWorkerContext;
 import org.hl7.fhir.utilities.npm.NpmPackage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ComplexWorkerContext extends SimpleWorkerContext {
-    public ComplexWorkerContext() throws FileNotFoundException, IOException, FHIRException {
+    public ComplexWorkerContext() throws IOException, FHIRException {
     }
 
     public void loadFromMultiplePackages(ArrayList<NpmPackage> packages, Boolean allowDuplicates) throws IOException {

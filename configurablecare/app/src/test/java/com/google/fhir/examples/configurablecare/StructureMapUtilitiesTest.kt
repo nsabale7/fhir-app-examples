@@ -57,9 +57,7 @@ class StructureMapUtilitiesTest {
     )
 
     val contextR4 = ComplexWorkerContext()
-    contextR4.apply {
-      loadFromMultiplePackages(packages, true)
-    }
+    contextR4.loadFromMultiplePackages(packages, true)
     val outputs = mutableListOf<Base>()
     val transformSupportServices =
       TransformSupportServicesMatchBox(
@@ -83,7 +81,7 @@ class StructureMapUtilitiesTest {
 
   }
 
-  fun String.readFile(systemPath: String = ASSET_BASE_PATH): String {
+  private fun String.readFile(systemPath: String = ASSET_BASE_PATH): String {
     val file = File("$systemPath/$this")
     return FileUtils.readFileToString(file, "UTF-8")
   }

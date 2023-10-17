@@ -23,65 +23,76 @@ import com.google.fhir.examples.configurablecare.FhirApplication
 import org.hl7.fhir.r4.context.SimpleWorkerContext
 import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.ValueSet
+import timber.log.Timber
 
 abstract class ValueSetResolver : ExternalAnswerValueSetResolver {
 
   companion object {
     private lateinit var fhirEngine: FhirEngine
-    private lateinit var _contextR4: SimpleWorkerContext
+    private lateinit var workerContext: SimpleWorkerContext
 
-    fun init(context: Context, contextR4: SimpleWorkerContext) {
-      println("*** initValueSetResolver")
+    fun init(context: Context) {
       fhirEngine = FhirApplication.fhirEngine(context)
-      _contextR4 = contextR4
+    }
+
+    fun init(context: Context, workerContext: SimpleWorkerContext) {
+      Timber.d("init")
+      fhirEngine = FhirApplication.fhirEngine(context)
+      this.workerContext = workerContext
     }
 
     private suspend fun fetchValueSetFromDb(uri: String): List<Coding> {
-      val systemUrl = _contextR4.fetchResource(ValueSet::class.java,uri)?.compose?.include?.firstOrNull()?.system
+      val valueSets = fhirEngine.search<ValueSet> { filter(ValueSet.URL, { value = uri }) }
 
-      val list = _contextR4.fetchCodeSystem(systemUrl)?.concept?.map {
+      if (valueSets.isEmpty())
+        return listOf(Coding().apply { display = "No referral facility available." })
+      else {
+        val valueSetList = ArrayList<Coding>()
+        for (valueSet in valueSets) {
+          for (item in valueSet.expansion.contains) {
+            valueSetList.add(
+              Coding().apply {
+                system = item.system
+                code = item.code
+                display = item.display
+              }
+            )
+          }
+        }
+        return valueSetList
+      }
+    }
+
+    private fun fetchValuesSetFromWorkerContext(uri: String): List<Coding> {
+      val systemUrl = workerContext.fetchResource(
+        ValueSet::class.java,
+        uri
+      )?.compose?.include?.firstOrNull()?.system
+
+      val list = workerContext.fetchCodeSystem(systemUrl)?.concept?.map {
         Coding().apply {
           code = it.code
           display = it.display
-          system = uri
+          system = systemUrl
         }
       } ?: emptyList()
 
-      if(list.isNotEmpty()) return list
+      if (list.isNotEmpty()) return list
 
-      return _contextR4
-        .fetchResource(ValueSet::class.java,uri)
-        .expansion?.contains?.map{
-        Coding().apply {
-          code = it.code
-          display = it.display
-          system = uri
-        }
-      } ?: emptyList()
-
-//      val valueSets = fhirEngine.search<ValueSet> { filter(ValueSet.URL, { value = uri }) }
-//
-//      if (valueSets.isEmpty())
-//        return listOf(Coding().apply { display = "No referral facility available." })
-//      else {
-//        val valueSetList = ArrayList<Coding>()
-//        for (valueSet in valueSets) {
-//          for (item in valueSet.expansion.contains) {
-//            valueSetList.add(
-//              Coding().apply {
-//                system = item.system
-//                code = item.code
-//                display = item.display
-//              }
-//            )
-//          }
-//        }
-//        return valueSetList
-//      }
+      return workerContext
+        .fetchResource(ValueSet::class.java, uri)
+        .expansion?.contains?.map {
+          Coding().apply {
+            code = it.code
+            display = it.display
+            system = uri
+          }
+        } ?: emptyList()
     }
   }
 
   override suspend fun resolve(uri: String): List<Coding> {
-    return fetchValueSetFromDb(uri)
+    return fetchValuesSetFromWorkerContext(uri)
   }
 }
+
