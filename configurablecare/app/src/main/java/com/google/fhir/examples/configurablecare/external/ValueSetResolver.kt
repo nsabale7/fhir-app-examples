@@ -64,6 +64,7 @@ abstract class ValueSetResolver : ExternalAnswerValueSetResolver {
     }
 
     private fun fetchValuesSetFromWorkerContext(uri: String): List<Coding> {
+      if(!this::workerContext.isInitialized) return emptyList()
       val systemUrl = workerContext.fetchResource(
         ValueSet::class.java,
         uri

@@ -82,13 +82,9 @@ class AddPatientViewModel(application: Application, private val state: SavedStat
         return@launch
       }
 
-      val outputFile = File(getApplication<Application>().externalCacheDir, "questionnaireResponse.json")
-      outputFile.writeText(FhirContext.forCached(FhirVersionEnum.R4).newJsonParser().encodeResourceToString(questionnaireResponse))
-
       val contextR4 = FhirApplication.contextR4(getApplication<FhirApplication>().applicationContext)
       if(contextR4 == null) {
         savedMeasles.value = null
-        println("**** contextR4 not created yet")
         return@launch
       }
 
@@ -117,8 +113,6 @@ class AddPatientViewModel(application: Application, private val state: SavedStat
         return@launch
       }
 
-//      val outputFil1e = File(getApplication<Application>().externalCacheDir, "bundle.json")
-//      outputFil1e.writeText(FhirContext.forCached(FhirVersionEnum.R4).newJsonParser().encodeResourceToString(targetResource))
       var patientID :String? = null
      targetResource.entry.forEach { bundleEntryComponent ->
        val resource = bundleEntryComponent.resource

@@ -108,7 +108,7 @@
                 android:maxLines="1"
                 android:layout_marginHorizontal="20dp"
                 android:layout_gravity="center"
-                android:text="Search Case Report"
+                android:text="Case Report List"
             />
         </LinearLayout>
 

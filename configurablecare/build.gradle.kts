@@ -17,10 +17,13 @@ buildscript {
   }
 }
 
+val projectPath = projectDir.absolutePath.replace("\\", "/")
+
 allprojects {
   repositories {
     google()
     mavenCentral()
+    maven("file://$projectPath/app/libs")
     gradlePluginPortal()
   }
   configureSpotless()

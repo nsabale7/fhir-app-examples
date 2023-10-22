@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<metadata>
+  <groupId>com.google.android.fhir</groupId>
+  <artifactId>data-capture</artifactId>
+  <versioning>
+    <latest>0.1.0-beta09_local</latest>
+    <release>0.1.0-beta09_local</release>
+    <versions>
+      <version>0.1.0-beta02_local</version>
+      <version>0.1.0-beta02</version>
+      <version>0.1.0-beta03_local</version>
+      <version>0.1.0-beta04_local</version>
+      <version>0.1.0-beta05_local</version>
+      <version>0.1.0-beta07_local</version>
+      <version>0.1.0-beta08_local</version>
+      <version>0.1.0-beta09_local</version>
+    </versions>
+    <lastUpdated>20230117050225</lastUpdated>
+  </versioning>
+</metadata>

@@ -110,7 +110,7 @@ class FhirApplication : Application(), DataCaptureConfig.Provider {
 
     val baseIg = async {
       NpmPackage.fromPackage(
-        assets.open("package.tgz")
+        assets.open("package-min.tgz")
       )
     }
 

@@ -1,0 +1,295 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.google.android.fhir",
+    "module": "data-capture",
+    "version": "1.0.2_local_measles",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "ca.uhn.hapi.fhir",
+          "module": "hapi-fhir-structures-r4",
+          "version": {
+            "requires": "6.0.1"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.databinding",
+          "module": "viewbinding",
+          "version": {
+            "requires": "7.1.2"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "data-capture-1.0.2_local_measles.aar",
+          "url": "data-capture-1.0.2_local_measles.aar",
+          "size": 636955,
+          "sha512": "3c4fe57fbbc3a05896164029549acc2a4135c456bb4fd877731bbbc729b5c2a62a811bf791df25088334a9722d5ae5897468abce950eba9b7db215861d89db12",
+          "sha256": "2d28f1ffa38b94c15a4ff5ac09b46386f934de5cd22156febf86f5db4fe501db",
+          "sha1": "1c5ff34044f4ea82f3a8356aafd1b9532c6d425e",
+          "md5": "71ec962650e4f097dc735ff3af80a105"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "ca.uhn.hapi.fhir",
+          "module": "hapi-fhir-structures-r4",
+          "version": {
+            "requires": "6.0.1"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.databinding",
+          "module": "viewbinding",
+          "version": {
+            "requires": "7.1.2"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "com.google.android.fhir",
+          "module": "common",
+          "version": {
+            "requires": "0.1.0-alpha03"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.constraintlayout",
+          "module": "constraintlayout",
+          "version": {
+            "requires": "2.1.1"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.2.0"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment-ktx",
+          "version": {
+            "requires": "1.3.1"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "com.github.bumptech.glide",
+          "module": "glide",
+          "version": {
+            "requires": "4.14.2"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "ca.uhn.hapi.fhir",
+          "module": "hapi-fhir-validation",
+          "version": {
+            "requires": "6.0.1"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            },
+            {
+              "group": "*",
+              "module": "commons-logging"
+            },
+            {
+              "group": "net.sf.saxon",
+              "module": "Saxon-HE"
+            },
+            {
+              "group": "*",
+              "module": "httpclient"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.6.4"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.6.10"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.2.0"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.6.0"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-extensions",
+          "version": {
+            "requires": "2.2.0"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        },
+        {
+          "group": "com.jakewharton.timber",
+          "module": "timber",
+          "version": {
+            "requires": "5.0.1"
+          },
+          "excludes": [
+            {
+              "group": "*",
+              "module": "xpp3"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "data-capture-1.0.2_local_measles.aar",
+          "url": "data-capture-1.0.2_local_measles.aar",
+          "size": 636955,
+          "sha512": "3c4fe57fbbc3a05896164029549acc2a4135c456bb4fd877731bbbc729b5c2a62a811bf791df25088334a9722d5ae5897468abce950eba9b7db215861d89db12",
+          "sha256": "2d28f1ffa38b94c15a4ff5ac09b46386f934de5cd22156febf86f5db4fe501db",
+          "sha1": "1c5ff34044f4ea82f3a8356aafd1b9532c6d425e",
+          "md5": "71ec962650e4f097dc735ff3af80a105"
+        }
+      ]
+    }
+  ]
+}

@@ -22,6 +22,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.work.Constraints
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.fhir.sync.PeriodicSyncConfiguration
 import com.google.android.fhir.sync.RepeatInterval
 import com.google.android.fhir.sync.Sync
@@ -66,10 +69,9 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
     viewModelScope.launch {
 
-      Sync.oneTimeSync<FhirSyncWorker>(getApplication())
-        .collect {
-          println("*** ${it}")
-          _pollState.emit(it) }
+      val oneTimeWorkRequest = OneTimeWorkRequestBuilder<FhirSyncWorker>().build()
+
+      WorkManager.getInstance(getApplication()).enqueueUniqueWork("upload", ExistingWorkPolicy.REPLACE, oneTimeWorkRequest)
     }
   }
 
