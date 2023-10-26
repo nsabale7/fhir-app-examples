@@ -19,14 +19,17 @@ package com.google.fhir.examples.configurablecare
 import ca.uhn.fhir.context.FhirContext
 import ca.uhn.fhir.context.FhirVersionEnum
 import ca.uhn.fhir.parser.IParser
+import com.google.fhir.examples.configurablecare.external.ValueSetResolver
 import com.google.fhir.examples.configurablecare.util.TransformSupportServicesMatchBox
 import java.io.File
 import org.apache.commons.io.FileUtils
 import org.hl7.fhir.r4.context.SimpleWorkerContext
 import org.hl7.fhir.r4.model.Base
 import org.hl7.fhir.r4.model.Bundle
+import org.hl7.fhir.r4.model.Coding
 import org.hl7.fhir.r4.model.Parameters
 import org.hl7.fhir.r4.model.QuestionnaireResponse
+import org.hl7.fhir.r4.model.ValueSet
 import org.hl7.fhir.utilities.npm.NpmPackage
 import org.junit.Assert
 import org.junit.Test
@@ -39,7 +42,7 @@ class StructureMapUtilitiesTest {
     val locationStructureMap =
       "MeaslesQuestionnaireToResources.fml".readFile()
     val immunizationIg =
-      "package.r4.tgz"
+      "package-measles.tgz"
     val baseIg =
       "package.tgz"
 
@@ -81,6 +84,106 @@ class StructureMapUtilitiesTest {
 
   }
 
+
+  @Test
+  fun `perform extraction for afro`() {
+    val locationQuestionnaireResponseString: String =
+      "AFROQR.json".readFile()
+    val locationStructureMap =
+      "AFROMRCIFQuestionnaireToResources.fml".readFile()
+    val immunizationIg =
+      "package-measles.tgz"
+    val baseIg =
+      "package.tgz"
+
+    val packages = arrayListOf<NpmPackage>(
+      NpmPackage.fromPackage(
+        File(
+          ClassLoader.getSystemResource(immunizationIg).file
+        ).inputStream()
+      ),
+      NpmPackage.fromPackage(
+        File(
+          ClassLoader.getSystemResource(baseIg).file
+        ).inputStream()
+      )
+    )
+
+    val contextR4 = ComplexWorkerContext()
+    contextR4.loadFromMultiplePackages(packages, true)
+    val outputs = mutableListOf<Base>()
+    val transformSupportServices =
+      TransformSupportServicesMatchBox(
+        contextR4,
+        outputs
+      )
+    val structureMapUtilities =
+      org.hl7.fhir.r4.utils.StructureMapUtilities(contextR4, transformSupportServices)
+    val structureMap =
+      structureMapUtilities.parse(locationStructureMap, "AFROMRCIFQuestionnaireToResources")
+    val iParser: IParser = FhirContext.forCached(FhirVersionEnum.R4).newJsonParser()
+    val targetResource = Bundle()
+    val baseElement =
+      iParser.parseResource(
+        QuestionnaireResponse::class.java, locationQuestionnaireResponseString
+      )
+
+    structureMapUtilities.transform(contextR4, baseElement, structureMap, targetResource)
+    Assert.assertEquals("Bundle", targetResource.resourceType.toString())
+  }
+
+  @Test
+  fun `perform extraction for immunization`() {
+
+    val locationQuestionnaireResponseString: String =
+      "AFROQR.json".readFile()
+
+    val locationStructureMap =
+      "IMMZCQRToPatient.fml".readFile()
+
+    val baseIg =
+      "package.tgz"
+
+    val immIg =
+      "package-imm.tgz"
+
+    val packages = arrayListOf<NpmPackage>(
+      NpmPackage.fromPackage(
+        File(
+          ClassLoader.getSystemResource(baseIg).file
+        ).inputStream()
+      ),
+      NpmPackage.fromPackage(
+        File(
+          ClassLoader.getSystemResource(immIg).file
+        ).inputStream()
+      )
+    )
+
+
+
+    val contextR4 = ComplexWorkerContext()
+    contextR4.loadFromMultiplePackages(packages, true)
+
+    val outputs = mutableListOf<Base>()
+    val transformSupportServices =
+      TransformSupportServicesMatchBox(
+        contextR4,
+        outputs
+      )
+    val structureMapUtilities =
+      org.hl7.fhir.r4.utils.StructureMapUtilities(contextR4, transformSupportServices)
+    val structureMap =
+      structureMapUtilities.parse(locationStructureMap, "IMMZCQRToPatient")
+    val iParser: IParser = FhirContext.forCached(FhirVersionEnum.R4).newJsonParser()
+    val targetResource = Bundle()
+    val baseElement =
+      iParser.parseResource(
+        QuestionnaireResponse::class.java, locationQuestionnaireResponseString
+      )
+    structureMapUtilities.transform(contextR4, baseElement, structureMap, targetResource)
+    Assert.assertEquals("Bundle", targetResource.resourceType.toString())
+  }
   private fun String.readFile(systemPath: String = ASSET_BASE_PATH): String {
     val file = File("$systemPath/$this")
     return FileUtils.readFileToString(file, "UTF-8")

@@ -39,15 +39,13 @@ class CaseReportListViewModel(application: Application) : AndroidViewModel(appli
 
 fun QuestionnaireResponse.toCaseReportItem() : CaseReportItem {
   val questionnaireResponseId = if (hasIdElement()) idElement.idPart else ""
-  val initialDiagnosis = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='initialDiagnosis').answer.value")
   val address = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='locality').answer.value")
   val caseNo = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='caseID').answer.value")
   val patientName = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='name').answer.value")
-  val detectedBy = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='DetectedBy').answer.value")
+  val detectedBy = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='reportingFacility').answer.value")
   val classification = FhirPathEvaluator.extractValueFromResource(this, "QuestionnaireResponse.repeat(item).where(linkId='finalClassification').answer.value")
   return CaseReportItem(
     questionnaireResponseId = questionnaireResponseId,
-    initialDiagnosis = initialDiagnosis,
     address = address,
     caseNo = caseNo,
     patientName = patientName,

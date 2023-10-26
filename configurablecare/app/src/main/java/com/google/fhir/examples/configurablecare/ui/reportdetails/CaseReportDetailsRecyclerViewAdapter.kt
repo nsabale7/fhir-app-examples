@@ -83,11 +83,10 @@ class CaseReportDetailsOverviewViewHolder(
 ) : CaseReportDetailsViewHolder(binding.root) {
   override fun bind(data: CaseReportDetailsData) {
     (data as CaseReportDetailsOverviewData).let {
-      binding.tvInitialDiagnosis.text = it.caseReportItem.initialDiagnosis
+      binding.tvFinalClassification.text = it.caseReportItem.classification
       binding.tvCaseNo.text = "Case No: ${it.caseReportItem.caseNo}"
       binding.tvPatientName.text = "Patient Name: ${it.caseReportItem.patientName}"
       binding.tvDetectedBy.text = "Detected By: ${it.caseReportItem.detectedBy}"
-      binding.tvClassification.text = "Classification: ${it.caseReportItem.classification}"
     }
   }
 }

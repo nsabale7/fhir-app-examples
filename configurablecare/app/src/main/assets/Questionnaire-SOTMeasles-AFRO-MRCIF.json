@@ -1,0 +1,396 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "SOTMeasles-AFRO-MRCIF",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-extr-smap"
+    ]
+  },
+  "language": "en",
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "YesNoUnknown",
+      "url": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown",
+      "name": "YesNoUnknown",
+      "title": "Yes No Unknown",
+      "status": "draft",
+      "description": "Yes No Unknown",
+      "compose": {
+        "include": [
+          {
+            "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown"
+          }
+        ]
+      }
+    },
+    {
+      "resourceType": "ValueSet",
+      "id": "Result",
+      "url": "http://worldhealthorganization.github.io/smart-ot/ValueSet/Result",
+      "name": "Result",
+      "title": " Result",
+      "status": "draft",
+      "description": " Result",
+      "compose": {
+        "include": [
+          {
+            "system": "http://worldhealthorganization.github.io/smart-ot/Result"
+          }
+        ]
+      }
+    }
+  ],
+  "url": "http://worldhealthorganization.github.io/smart-ot/Questionnaire/SOTMeasles-AFRO-MRCIF",
+  "version": "0.2.1",
+  "name": "SOTMeasles-AFRO-MRCIF",
+  "title": "AFRO Measles Case Investigation Questionnaire",
+  "status": "draft",
+  "subjectType": [
+    "Patient"
+  ],
+  "date": "2023-10-24T14:39:30+02:00",
+  "publisher": "WHO",
+  "contact": [
+    {
+      "name": "WHO",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://who.int"
+        }
+      ]
+    }
+  ],
+  "description": "AFRO Measles Case Investigation Questionnaire",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001"
+        }
+      ]
+    }
+  ],
+  "item": [
+    {
+      "linkId": "investigationForm",
+      "text": "Measles/ rubella suspected case investigation form for immediate reporting",
+      "type": "group",
+      "repeats": false,
+      "item": [
+        {
+          "linkId": "description",
+          "text": "Complete this form for: health facility / district to the national level",
+          "type": "display",
+          "repeats": false
+        },
+        {
+          "linkId": "reportingSource",
+          "text": "For Official Use Only -to be completed by the district / national team",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "caseID",
+              "text": "EPID Number:  Country-Province-District-year-onset-case #",
+              "type": "string",
+              "repeats": false
+            },
+            {
+              "linkId": "reportingInstitution",
+              "text": "Reporting Institution",
+              "type": "group",
+              "repeats": false,
+              "item": [
+                {
+                  "linkId": "reportingFacility",
+                  "text": "Reporting Health Facility",
+                  "type": "string",
+                  "repeats": false
+                },
+                {
+                  "linkId": "locality",
+                  "text": "Reporting District",
+                  "type": "string",
+                  "repeats": false
+                }
+              ]
+            },
+            {
+              "linkId": "DateReportedNational",
+              "text": "Date the form was received at national level",
+              "type": "date",
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "linkId": "demographics",
+          "text": "IDENTIFICATION:",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "name",
+              "text": "Name of Patient",
+              "type": "string",
+              "repeats": false
+            },
+            {
+              "linkId": "DoB",
+              "text": "Date of Birth",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "ageOnset",
+              "text": "If date of birth is unknown, age",
+              "type": "integer",
+              "repeats": false
+            },
+            {
+              "linkId": "sex",
+              "text": "Sex",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/BiologicalSex"
+            },
+            {
+              "linkId": "address",
+              "text": "Address",
+              "type": "string",
+              "repeats": false
+            },
+            {
+              "linkId": "localityType",
+              "text": "Urban/Rural",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/LocType"
+            }
+          ]
+        },
+        {
+          "linkId": "vaccinationStatus",
+          "text": "VACCINATION STATUS:",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "vaccineType",
+              "text": "Type of Vaccine received",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/VaccineType"
+            },
+            {
+              "linkId": "noOfDoses",
+              "text": "Number of measles containing vaccine doses received in routine EPI and/or SIAs -valid values: 1 - 4 doses",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/NoOfDoses"
+            },
+            {
+              "linkId": "lastDoseDate",
+              "text": "Date of last dose",
+              "type": "date",
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "linkId": "caseInvestigation",
+          "text": "CASE INVESTIGATION:",
+          "type": "group",
+          "repeats": true,
+          "item": [
+            {
+              "linkId": "dateReported",
+              "text": "Date case was notified to the district",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "DateOfConsultation",
+              "text": "Date Of case investigation",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "rashOnsetDate",
+              "text": "Date of rash onset",
+              "type": "date",
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "linkId": "clinical",
+          "text": "Clinical HISTORY:",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "fever",
+              "text": "Fever",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "rash",
+              "text": "Generalized Rash",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "cough",
+              "text": "Cough",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "conjunctivitis",
+              "text": "Red Eyes",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "coryza",
+              "text": "Running nose",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "lymphadenopathy",
+              "text": "Swollen lymph nodes behind ears",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "jointPain",
+              "text": "Joint pain/swelling",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "admitted",
+              "text": "In/out-patient",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "outcome",
+              "text": "Outcome",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/PatientOutcome"
+            },
+            {
+              "linkId": "travelledOutside",
+              "text": "History of travel outside the village/ town/ district in last 7 - 21 days before onset of rash",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/YesNoUnknown"
+            },
+            {
+              "linkId": "infectionSetting",
+              "text": "Most probable place of exposure to measles/ rubella: district",
+              "type": "string",
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "linkId": "classification",
+          "text": "FINAL CLASSIFICATION:",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "finalClassification",
+              "text": "Final Classification",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/FinalClassification"
+            },
+            {
+              "linkId": "reportedBy",
+              "text": "Person Completing the form: Name",
+              "type": "string",
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "linkId": "laboratoryResults",
+          "text": "FOR SUSPECTED MEASLES/ RUBELLA CASES WITH LAB SPECIMENS",
+          "type": "group",
+          "repeats": false,
+          "item": [
+            {
+              "linkId": "sampleType",
+              "text": "Specimen source",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/SampleType"
+            },
+            {
+              "linkId": "collectionDate",
+              "text": "Date specimen obtained",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "specimenSentDate",
+              "text": "Date specimen was sent to lab",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "specimenReceivedDate",
+              "text": "Date Received",
+              "type": "date",
+              "repeats": false
+            },
+            {
+              "linkId": "testPerformed",
+              "text": "Type of test",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/TestType"
+            },
+            {
+              "linkId": "result",
+              "text": "Result",
+              "type": "choice",
+              "repeats": false,
+              "answerValueSet": "http://worldhealthorganization.github.io/smart-ot/ValueSet/Result"
+            },
+            {
+              "linkId": "specifyVirus",
+              "text": "Virus Detection -Genotype",
+              "type": "string",
+              "repeats": false
+            },
+            {
+              "linkId": "labName",
+              "text": "Laboratory Name",
+              "type": "string",
+              "repeats": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

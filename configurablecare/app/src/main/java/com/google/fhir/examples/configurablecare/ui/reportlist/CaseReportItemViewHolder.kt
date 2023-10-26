@@ -21,7 +21,7 @@ import com.google.fhir.examples.configurablecare.databinding.CaseReportListItemV
 
 class CaseReportItemViewHolder(binding: CaseReportListItemViewBinding) :
   RecyclerView.ViewHolder(binding.root) {
-  private val initialDiagnosis: TextView = binding.tvInitialDiagnosis
+  private val finalClassification: TextView = binding.tvFinalClassification
   private val caseNo: TextView = binding.tvCaseNo
   private val patientName: TextView = binding.tvPatientName
 
@@ -29,7 +29,7 @@ class CaseReportItemViewHolder(binding: CaseReportListItemViewBinding) :
     caseReportItem: CaseReportItem,
     onItemClicked: (CaseReportItem) -> Unit
   ) {
-    this.initialDiagnosis.text  = caseReportItem.initialDiagnosis
+    this.finalClassification.text  = caseReportItem.classification
     this.caseNo.text  = caseReportItem.caseNo
     this.patientName.text  = caseReportItem.patientName
     this.itemView.setOnClickListener { onItemClicked(caseReportItem) }

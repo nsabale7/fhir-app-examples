@@ -97,9 +97,9 @@ class AddPatientViewModel(application: Application, private val state: SavedStat
       val structureMapUtilities =
         org.hl7.fhir.r4.utils.StructureMapUtilities(contextR4, transformSupportServices)
 
-      val locationStructureMap = readFileFromAssets("MeaslesQuestionnaireToResources.map")
+      val locationStructureMap = readFileFromAssets("AFROMRCIFQuestionnaireToResources.fml")
 
-      val structureMap = structureMapUtilities.parse(locationStructureMap, "MeaslesQuestionnaireToResources")
+      val structureMap = structureMapUtilities.parse(locationStructureMap, "AFROMRCIFQuestionnaireToResources")
       val iParser: IParser = FhirContext.forCached(FhirVersionEnum.R4).newJsonParser()
       val targetResource = Bundle()
       val baseElement =

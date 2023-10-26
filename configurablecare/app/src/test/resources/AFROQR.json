@@ -1,0 +1,467 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaireresponse|2.7"
+    ],
+    "tag": [
+      {
+        "code": "lformsVersion: 33.3.6"
+      }
+    ]
+  },
+  "status": "completed",
+  "authored": "2023-10-19T15:13:59.726Z",
+  "item": [
+    {
+      "linkId": "investigationForm",
+      "text": "Measles/ rubella suspected case investigation form for immediate reporting",
+      "item": [
+        {
+          "linkId": "reportingSource",
+          "text": "For Official Use Only -to be completed by the district / national team",
+          "item": [
+            {
+              "linkId": "caseID",
+              "text": "EPID Number:  Country-Province-District-year-onset-case #",
+              "answer": [
+                {
+                  "valueString": "India-Delhi-Gurugram-2023-12345"
+                }
+              ]
+            },
+            {
+              "linkId": "reportingInstitution",
+              "text": "Reporting Institution",
+              "item": [
+                {
+                  "linkId": "reportingFacility",
+                  "text": "Reporting Health Facility",
+                  "answer": [
+                    {
+                      "valueString": "Medanta"
+                    }
+                  ]
+                },
+                {
+                  "linkId": "locality",
+                  "text": "Reporting District",
+                  "answer": [
+                    {
+                      "valueString": "Gurugram"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "linkId": "DateReportedNational",
+              "text": "Date the form was received at national level",
+              "answer": [
+                {
+                  "valueDate": "2023-10-19"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "demographics",
+          "text": "IDENTIFICATION:",
+          "item": [
+            {
+              "linkId": "name",
+              "text": "Name of Patient",
+              "answer": [
+                {
+                  "valueString": "Urban"
+                }
+              ]
+            },
+            {
+              "linkId": "DoB",
+              "text": "Date of Birth",
+              "answer": [
+                {
+                  "valueDate": "2010-10-01"
+                }
+              ]
+            },
+            {
+              "linkId": "ageOnset",
+              "text": "If date of birth is unknown, age",
+              "answer": [
+                {
+                  "valueInteger": 23
+                }
+              ]
+            },
+            {
+              "linkId": "sex",
+              "text": "Sex",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://hl7.org/fhir/administrative-gender",
+                    "code": "male",
+                    "display": "Male"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "address",
+              "text": "Address",
+              "answer": [
+                {
+                  "valueString": "Catopia"
+                }
+              ]
+            },
+            {
+              "linkId": "localityType",
+              "text": "Urban/Rural",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/LocType",
+                    "code": "1",
+                    "display": "Urban"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "vaccinationStatus",
+          "text": "VACCINATION STATUS:",
+          "item": [
+            {
+              "linkId": "vaccineType",
+              "text": "Type of Vaccine received",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/VaccineType",
+                    "code": "1",
+                    "display": "Measles"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "noOfDoses",
+              "text": "Number of measles containing vaccine doses received in routine EPI and/or SIAs -valid values: 1 - 4 doses",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/NoOfDoses",
+                    "code": "1",
+                    "display": "One dose"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "lastDoseDate",
+              "text": "Date of last dose",
+              "answer": [
+                {
+                  "valueDate": "2023-09-25"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "caseInvestigation",
+          "text": "CASE INVESTIGATION:",
+          "item": [
+            {
+              "linkId": "dateReported",
+              "text": "Date case was notified to the district",
+              "answer": [
+                {
+                  "valueDate": "2023-10-03"
+                }
+              ]
+            },
+            {
+              "linkId": "DateOfConsultation",
+              "text": "Date Of case investigation",
+              "answer": [
+                {
+                  "valueDate": "2023-10-19"
+                }
+              ]
+            },
+            {
+              "linkId": "rashOnsetDate",
+              "text": "Date of rash onset",
+              "answer": [
+                {
+                  "valueDate": "2023-10-23"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "clinical",
+          "text": "Clinical HISTORY:",
+          "item": [
+            {
+              "linkId": "fever",
+              "text": "Fever",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Yes",
+                    "display": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "rash",
+              "text": "Generalized Rash",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Yes",
+                    "display": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "cough",
+              "text": "Cough",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Yes",
+                    "display": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "conjunctivitis",
+              "text": "Red Eyes",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Yes",
+                    "display": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "coryza",
+              "text": "Running nose",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Yes",
+                    "display": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "lymphadenopathy",
+              "text": "Sowllen lymph nodes behind ears",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "No",
+                    "display": "No"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "jointPain",
+              "text": "joint pain/swelling",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Unknown",
+                    "display": "Unknown"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "admitted",
+              "text": "In/out-patient",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Unknown",
+                    "display": "Unknown"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "outcome",
+              "text": "Outcome",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/PatientOutcome",
+                    "code": "Cured",
+                    "display": "Cured"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "travelledOutside",
+              "text": "History of travel outside the village/ town/ district in last 7 - 21 days before onset of rash",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/YesNoUnknown",
+                    "code": "Yes",
+                    "display": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "infectionSetting",
+              "text": "Most probable place of exposure to measles/ rubella: district",
+              "answer": [
+                {
+                  "valueString": "haryana"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "classification",
+          "text": "FINAL CLASSIFICATION:",
+          "item": [
+            {
+              "linkId": "finalClassification",
+              "text": "Final Classification",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/FinalClassification",
+                    "code": "1",
+                    "display": "Measles"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "reportedBy",
+              "text": "Person Completing the form: Name",
+              "answer": [
+                {
+                  "valueString": "Dexter"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "laboratoryResults",
+          "text": "FOR SUSPECTED MEASLES/ RUBELLA CASES WITH LAB SPECIMENS",
+          "item": [
+            {
+              "linkId": "sampleType",
+              "text": "Specimen source",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/SampleType",
+                    "code": "1",
+                    "display": "Serum"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "collectionDate",
+              "text": "Date specimen obtained",
+              "answer": [
+                {
+                  "valueDate": "2023-10-03"
+                }
+              ]
+            },
+            {
+              "linkId": "specimenSentDate",
+              "text": "Date specimen was sent to lab",
+              "answer": [
+                {
+                  "valueDate": "2023-10-10"
+                }
+              ]
+            },
+            {
+              "linkId": "specimenReceivedDate",
+              "text": "Date Received",
+              "answer": [
+                {
+                  "valueDate": "2023-10-17"
+                }
+              ]
+            },
+            {
+              "linkId": "testPerformed",
+              "text": "Type of test",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/TestType",
+                    "code": "Measles",
+                    "display": "Measles IgM"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "result",
+              "text": "Result",
+              "answer": [
+                {
+                  "valueCoding": {
+                    "system": "http://worldhealthorganization.github.io/smart-ot/Result",
+                    "code": "0",
+                    "display": "Negative"
+                  }
+                }
+              ]
+            },
+            {
+              "linkId": "labName",
+              "text": "Laboratory Name",
+              "answer": [
+                {
+                  "valueString": "Pathlabs"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

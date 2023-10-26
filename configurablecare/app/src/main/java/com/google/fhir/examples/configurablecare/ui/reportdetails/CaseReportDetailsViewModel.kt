@@ -39,7 +39,7 @@ class CaseReportDetailsViewModel(application: Application, state: SavedStateHand
     data.add(CaseReportDetailsOverviewData(caseReportItem))
     data.add(
       CaseReportDetailsExpandableViewData(
-        "I IDENTIFICATION OF THE REPORTING INSTITUTION",
+        "I REPORTING INSTITUTION",
         FhirPathEvaluator.getReportPropertyListFromResource(
           questionnaireResponse,
           FhirPathHelper.reportingInstitution
@@ -49,7 +49,7 @@ class CaseReportDetailsViewModel(application: Application, state: SavedStateHand
 
     data.add(
       CaseReportDetailsExpandableViewData(
-        "II PATIENT INFORMATION",
+        "II IDENTIFICATION",
         FhirPathEvaluator.getReportPropertyListFromResource(
           questionnaireResponse,
           FhirPathHelper.patientInformation
@@ -59,7 +59,7 @@ class CaseReportDetailsViewModel(application: Application, state: SavedStateHand
 
     data.add(
       CaseReportDetailsExpandableViewData(
-        "III VACCINATION HISTORY",
+        "III VACCINATION STATUS",
         FhirPathEvaluator.getReportPropertyListFromResource(
           questionnaireResponse,
           FhirPathHelper.vaccinationHistory
@@ -69,7 +69,17 @@ class CaseReportDetailsViewModel(application: Application, state: SavedStateHand
 
     data.add(
       CaseReportDetailsExpandableViewData(
-        "IV CLINICAL DATA, FOLLOW-UP AND TREATMENT ",
+        "III CASE INVESTIGATION",
+        FhirPathEvaluator.getReportPropertyListFromResource(
+          questionnaireResponse,
+          FhirPathHelper.caseInvestigation
+        )
+      )
+    )
+
+    data.add(
+      CaseReportDetailsExpandableViewData(
+        "IV CLINICAL HISTORY",
         FhirPathEvaluator.getReportPropertyListFromResource(
           questionnaireResponse,
           FhirPathHelper.clinicalData
@@ -79,38 +89,20 @@ class CaseReportDetailsViewModel(application: Application, state: SavedStateHand
 
     data.add(
       CaseReportDetailsExpandableViewData(
-        "V SPECIMENS AND LABORATORY TESTING",
+        "V FINAL CLASSIFICATION",
         FhirPathEvaluator.getReportPropertyListFromResource(
           questionnaireResponse,
-          FhirPathHelper.specimensTesting
+          FhirPathHelper.classification
         )
       )
     )
 
     data.add(
       CaseReportDetailsExpandableViewData(
-        "VI INVESTIGATION",
+        "VI SUSPECTED MEASLES/ RUBELLA CASES WITH LAB SPECIMENS",
         FhirPathEvaluator.getReportPropertyListFromResource(
           questionnaireResponse,
-          FhirPathHelper.investigation
-        )
-      )
-    )
-    data.add(
-      CaseReportDetailsExpandableViewData(
-        "VII RESPONSE MEASURES",
-        FhirPathEvaluator.getReportPropertyListFromResource(
-          questionnaireResponse,
-          FhirPathHelper.responseMeasures
-        )
-      )
-    )
-    data.add(
-      CaseReportDetailsExpandableViewData(
-        "VIII CLASSIFICATION",
-        FhirPathEvaluator.getReportPropertyListFromResource(
-          questionnaireResponse,
-          FhirPathHelper.classification
+          FhirPathHelper.specimensTesting
         )
       )
     )

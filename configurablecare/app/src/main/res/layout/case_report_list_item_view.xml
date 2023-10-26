@@ -10,7 +10,7 @@
 >
 
     <TextView
-        android:id="@+id/tvInitialDiagnosis"
+        android:id="@+id/tvFinalClassification"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceSubtitle1"
@@ -25,7 +25,7 @@
         android:id="@+id/tvCaseNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvInitialDiagnosis"
+        app:layout_constraintTop_toBottomOf="@id/tvFinalClassification"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/small_text_margin"
@@ -37,13 +37,13 @@
         android:id="@+id/tvPatientName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tvCaseNo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="@dimen/small_text_margin"
         android:singleLine="true"
         android:textAppearance="?attr/textAppearanceBody2"
-        tools:text="Nitin Sabale"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/margin_extra_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCaseNo"
+        tools:text="Nitin Sabale" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
